@@ -28,7 +28,39 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
+    if(type(input_string) != type("type")):
+        return None
+    
+    num_list = ["zero","one","two","three","four","five","six","seven","eight","nine","ten"]
+
+    digit_string = ""
+
+    for i in input_string:
+        if(i == '0'):
+            digit_string += num_list[0]
+        elif(i == '1'):
+            digit_string += num_list[1]
+        elif(i == '2'):
+            digit_string += num_list[2]
+        elif(i == '3'):
+            digit_string += num_list[3]
+        elif(i == '4'):
+            digit_string += num_list[4]
+        elif(i == '5'):
+            digit_string += num_list[5]
+        elif(i == '6'):
+            digit_string += num_list[6]
+        elif(i == '7'):
+            digit_string += num_list[7]
+        elif(i == '8'):
+            digit_string += num_list[8]
+        elif(i == '9'):
+            digit_string += num_list[9]
+        else:
+            continue
+        digit_string += ' '
+
+    digit_string = digit_string[0:-1]
     return digit_string
 
 
@@ -39,6 +71,24 @@ def digits_to_words(input_string):
 이 두번째의 경우에는 첫번째 단어는 소문자로, 그 후에 오는 단어들의 첫번째 글자들은 대문자로 쓰입니다 (ex. camelCaseVariable). 
 """
 
+def make_first_char_upper(in_str):
+    
+    l_str = len(in_str)
+
+    if(l_str<= 0):
+        return ""
+    
+    temp_str = in_str
+    temp_strl = in_str
+    temp_str = temp_str.upper()
+    temp_strl = temp_strl.lower()
+    ret_str = temp_str[0]
+    
+    for i in range(1,l_str):
+        ret_str += temp_strl[i]
+    
+    return ret_str
+    
 
 def to_camel_case(underscore_str):
     """
@@ -64,5 +114,35 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    if(type(underscore_str) != type("type")):
+        return None
+    
+    temp_str = underscore_str
+
+    voca_list = temp_str.split('_')
+
+    l_list = len(voca_list)
+
+    if(l_list <= 0):
+        return ""
+    elif(l_list == 1):
+        return underscore_str
+    
+    voca_list2 = []
+
+    for i in voca_list:
+        if(i == ""):
+            continue
+        voca_list2.append(i)
+    
+    l_list2 = len(voca_list2)
+
+    if(l_list2 <= 0):
+        return ""
+    
+    camelcase_str = voca_list2[0].lower()
+
+    for i in range(1,l_list2):
+        camelcase_str += make_first_char_upper(voca_list2[i])
+
     return camelcase_str
