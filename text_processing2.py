@@ -31,6 +31,9 @@ def digits_to_words(input_string):
     if(type(input_string) != type("type")):
         return None
     
+    if(input_string == ""):
+        return ""
+    
     num_list = ["zero","one","two","three","four","five","six","seven","eight","nine","ten"]
 
     digit_string = ""
